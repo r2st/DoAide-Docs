@@ -16,6 +16,7 @@ const EXPECTED_ROUTES = [
   "/leave-application-generator",
   "/resignation-letter-generator",
   "/authorization-letter-generator",
+  "/salary-certificate-generator",
 ];
 
 const SITEMAP_SLUGS = [
@@ -33,11 +34,12 @@ const SITEMAP_SLUGS = [
   "leave-application-generator",
   "resignation-letter-generator",
   "authorization-letter-generator",
+  "salary-certificate-generator",
 ];
 
 describe("Route coverage", () => {
-  it("has 15 routes (homepage + 14 generators)", () => {
-    expect(EXPECTED_ROUTES.length).toBe(15);
+  it("has 16 routes (homepage + 15 generators)", () => {
+    expect(EXPECTED_ROUTES.length).toBe(16);
   });
 
   it("every sitemap slug has a matching route", () => {

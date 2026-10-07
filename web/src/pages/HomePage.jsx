@@ -17,6 +17,7 @@ const DOCS = [
   { slug: "leave-application-generator", name: "Leave Application", icon: "🏖️", category: "HR", desc: "Create leave applications — casual, sick, earned, maternity.", popular: true },
   { slug: "resignation-letter-generator", name: "Resignation Letter", icon: "👋", category: "HR", desc: "Generate professional resignation letters.", popular: true },
   { slug: "authorization-letter-generator", name: "Authorization Letter", icon: "🔑", category: "Legal", desc: "Create authorization letters for third-party actions." },
+  { slug: "salary-certificate-generator", name: "Salary Certificate", icon: "📃", category: "HR", desc: "Generate salary certificates for loans, visas, and verification.", popular: true },
 ];
 
 const CATEGORIES = ["All", "HR", "Rental", "Business", "Legal"];

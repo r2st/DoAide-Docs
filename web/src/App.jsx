@@ -18,6 +18,7 @@ const PowerOfAttorneyGenerator = lazy(() => import("./pages/PowerOfAttorneyGener
 const LeaveApplicationGenerator = lazy(() => import("./pages/LeaveApplicationGenerator"));
 const ResignationLetterGenerator = lazy(() => import("./pages/ResignationLetterGenerator"));
 const AuthorizationLetterGenerator = lazy(() => import("./pages/AuthorizationLetterGenerator"));
+const SalaryCertificateGenerator = lazy(() => import("./pages/SalaryCertificateGenerator"));
 
 function Loading() {
   return (
@@ -48,6 +49,7 @@ export default function App() {
           <Route path="/leave-application-generator" element={<LeaveApplicationGenerator />} />
           <Route path="/resignation-letter-generator" element={<ResignationLetterGenerator />} />
           <Route path="/authorization-letter-generator" element={<AuthorizationLetterGenerator />} />
+          <Route path="/salary-certificate-generator" element={<SalaryCertificateGenerator />} />
         </Routes>
       </Suspense>
       <Footer />
