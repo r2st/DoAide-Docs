@@ -14,8 +14,12 @@ const DOAIDE_LINKS = [
   { href: "https://gst.doaide.com", label: "GST Tools" },
   { href: "https://resume.doaide.com", label: "Resume Builder" },
   { href: "https://409a.doaide.com", label: "409A Valuations" },
+  { href: "https://insure.doaide.com", label: "InsureKit" },
+  { href: "https://tax.doaide.com", label: "TaxFile" },
+  { href: "https://pulse.doaide.com", label: "Pulse" },
   { href: "https://contracts.doaide.com", label: "Contracts" },
   { href: "https://invoicer.doaide.com", label: "Invoicer" },
+  { href: "https://homenex.aiknol.com", label: "HomeNex" },
 ];
 
 export default function Footer() {
