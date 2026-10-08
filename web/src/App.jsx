@@ -29,6 +29,7 @@ const PartnershipDeedGenerator = lazy(() => import("./pages/PartnershipDeedGener
 const EmbedRentReceiptGenerator = lazy(() => import("./pages/EmbedRentReceiptGenerator"));
 const FreeLegalDocTemplatesIndia = lazy(() => import("./pages/blog/FreeLegalDocTemplatesIndia"));
 const HowToWriteRentAgreement = lazy(() => import("./pages/blog/HowToWriteRentAgreement"));
+const VsCanvaTemplates = lazy(() => import("./pages/compare/VsCanvaTemplates"));
 
 function Loading() {
   return (
@@ -80,6 +81,7 @@ export default function App() {
             <Route path="free-legal-document-templates-india" element={<FreeLegalDocTemplatesIndia />} />
             <Route path="how-to-write-rent-agreement" element={<HowToWriteRentAgreement />} />
           </Route>
+          <Route path="/compare/canva-templates" element={<VsCanvaTemplates />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>

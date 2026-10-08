@@ -20,6 +20,7 @@ const EXPECTED_ROUTES = [
   "/affidavit-generator",
   "/partnership-deed-generator",
   "/blog",
+  "/compare/canva-templates",
 ];
 
 const SITEMAP_SLUGS = [
@@ -43,8 +44,8 @@ const SITEMAP_SLUGS = [
 ];
 
 describe("Route coverage", () => {
-  it("has 20 routes (homepage + 17 generators + blog + catchall)", () => {
-    expect(EXPECTED_ROUTES.length).toBe(19);
+  it("has expected number of routes", () => {
+    expect(EXPECTED_ROUTES.length).toBe(20);
   });
 
   it("every sitemap slug has a matching route", () => {
@@ -55,7 +56,7 @@ describe("Route coverage", () => {
 
   it("every generator route has a matching sitemap slug", () => {
     for (const route of EXPECTED_ROUTES) {
-      if (route === "/" || route === "/blog") continue;
+      if (route === "/" || route === "/blog" || route.startsWith("/compare/")) continue;
       expect(SITEMAP_SLUGS).toContain(route.slice(1));
     }
   });

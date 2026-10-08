@@ -578,3 +578,22 @@ a:hover { color: var(--gold-light); }
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
+
+/* ---- Animated counter ---- */
+.counter-section {
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-bottom: 1rem;
+}
+.counter-number {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1.2;
+}
+.counter-label {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}

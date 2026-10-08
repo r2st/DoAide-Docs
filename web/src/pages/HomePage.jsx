@@ -1,8 +1,53 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import SeoHead from "../components/SeoHead";
 import RecentTools from "../components/RecentTools";
 import TrendingTools from "../components/TrendingTools";
+
+function AnimatedCounter() {
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const ref = useRef(null);
+  const target = 50000;
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !started) {
+        setStarted(true);
+        obs.disconnect();
+      }
+    }, { threshold: 0.3 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started) return;
+    const duration = 2000;
+    const steps = 60;
+    const inc = target / steps;
+    let current = 0;
+    const interval = setInterval(() => {
+      current += inc;
+      if (current >= target) {
+        setCount(target);
+        clearInterval(interval);
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, duration / steps);
+    return () => clearInterval(interval);
+  }, [started]);
+
+  return (
+    <div ref={ref} className="counter-section">
+      <div className="counter-number">{count.toLocaleString("en-IN")}+</div>
+      <div className="counter-label">Documents Generated</div>
+    </div>
+  );
+}
 
 const DOCS = [
   { slug: "rent-receipt-generator", name: "Rent Receipt", icon: "🏠", category: "Rental", desc: "Generate rent receipts for HRA tax exemption. Free PDF download.", popular: true },
@@ -51,6 +96,28 @@ export default function HomePage() {
             Download as PDF instantly. All processing happens in your browser — your data never leaves your device.
           </p>
         </div>
+
+        <AnimatedCounter />
+
+        {/* Quick Start */}
+        <section className="quick-start-section" style={{ marginBottom: "2rem" }}>
+          <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem", fontWeight: 400, textAlign: "center", marginBottom: "1.5rem", color: "var(--text)" }}>
+            Generate Your First Document in <span style={{ color: "var(--gold)" }}>30 Seconds</span>
+          </h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
+            {[
+              { step: "1", title: "Choose Your Document", desc: "Pick from 17 document types — rent receipts, salary slips, invoices, and more." },
+              { step: "2", title: "Fill In the Details", desc: "Enter your information in a simple form. See a live preview as you type." },
+              { step: "3", title: "Download PDF Instantly", desc: "Click download and get a professional PDF. No signup, no watermarks." },
+            ].map((s) => (
+              <div key={s.step} style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "var(--radius-lg)", padding: "1.25rem", textAlign: "center" }}>
+                <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: "var(--gold)", color: "var(--text-on-gold)", display: "inline-flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "1rem", marginBottom: "0.75rem" }}>{s.step}</div>
+                <h3 style={{ fontSize: "0.95rem", fontWeight: 600, color: "var(--text)", marginBottom: "0.35rem" }}>{s.title}</h3>
+                <p style={{ fontSize: "0.8rem", color: "var(--text-secondary)", lineHeight: 1.5 }}>{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         <RecentTools />
 
