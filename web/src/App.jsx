@@ -2,6 +2,9 @@ import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import InstallPrompt from "./components/InstallPrompt";
+import ToolTracker from "./components/ToolTracker";
+import SocialProofBar from "./components/SocialProofBar";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const RentReceiptGenerator = lazy(() => import("./pages/RentReceiptGenerator"));
@@ -44,7 +47,9 @@ export default function App() {
   return (
     <>
       <Header />
+      <ToolTracker />
       <Suspense fallback={<Loading />}>
+        <SocialProofBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/rent-receipt-generator" element={<RentReceiptGenerator />} />
@@ -66,6 +71,7 @@ export default function App() {
         </Routes>
       </Suspense>
       <Footer />
+      <InstallPrompt />
     </>
   );
 }

@@ -10,6 +10,13 @@
     <meta name="author" content="DoAide by Apprend Technologies" />
     <link rel="canonical" href="https://docs.doaide.com/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="DoAide Docs" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png" />
+    <meta name="theme-color" content="#0A0A0B" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Free Document Generator for India — DoAide Docs" />
@@ -85,5 +92,12 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script defer src="https://analytics.doaide.com/script.js" data-website-id="f5021953-573c-460b-a5dd-1e208aad2771"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js").catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>
