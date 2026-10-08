@@ -73,6 +73,41 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
+
+        <section className="explore-more" style={{ marginTop: "3rem", paddingTop: "2rem", borderTop: "1px solid var(--border, #e5e7eb)" }}>
+          <h2 style={{ fontSize: "1.25rem", fontWeight: 600, marginBottom: "1rem", color: "var(--heading, #1f2937)" }}>You Might Also Need</h2>
+          <div className="doc-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
+            <a href="https://resume.doaide.com" className="doc-card" target="_blank" rel="noopener noreferrer">
+              <span className="doc-card-icon" style={{ fontSize: "1.5rem" }}>📝</span>
+              <h3>Resume Builder</h3>
+              <p>Build ATS-friendly resumes with AI suggestions. Free PDF download.</p>
+              <span className="doc-card-tag">Career</span>
+            </a>
+            <a href="https://gst.doaide.com" className="doc-card" target="_blank" rel="noopener noreferrer">
+              <span className="doc-card-icon" style={{ fontSize: "1.5rem" }}>🏷️</span>
+              <h3>GST Tools</h3>
+              <p>GST calculator, GSTIN lookup, HSN codes, and filing due dates.</p>
+              <span className="doc-card-tag">Tax</span>
+            </a>
+            <a href="https://contracts.doaide.com" className="doc-card" target="_blank" rel="noopener noreferrer">
+              <span className="doc-card-icon" style={{ fontSize: "1.5rem" }}>📋</span>
+              <h3>Contracts</h3>
+              <p>Draft NDAs, service agreements, and employment contracts with AI.</p>
+              <span className="doc-card-tag">Legal</span>
+            </a>
+            <a href="https://409a.doaide.com" className="doc-card" target="_blank" rel="noopener noreferrer">
+              <span className="doc-card-icon" style={{ fontSize: "1.5rem" }}>📊</span>
+              <h3>409A Valuations</h3>
+              <p>Independent, defensible startup valuations with AI-assisted intake.</p>
+              <span className="doc-card-tag">Finance</span>
+            </a>
+          </div>
+          <p style={{ marginTop: "1rem", fontSize: "0.875rem" }}>
+            <a href="https://doaide.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--gold, #d97706)", textDecoration: "none" }}>
+              Explore all DoAide tools &rarr;
+            </a>
+          </p>
+        </section>
       </div>
     </>
   );
