@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import InstallPrompt from "./components/InstallPrompt";
 import ToolTracker from "./components/ToolTracker";
 import SocialProofBar from "./components/SocialProofBar";
+import ReferralBanner from "./components/ReferralBanner";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const RentReceiptGenerator = lazy(() => import("./pages/RentReceiptGenerator"));
@@ -72,6 +73,7 @@ export default function App() {
       </Suspense>
       <Footer />
       <InstallPrompt />
+      <ReferralBanner />
     </>
   );
 }
