@@ -20,6 +20,8 @@ const DOCS = [
   { slug: "resignation-letter-generator", name: "Resignation Letter", icon: "👋", category: "HR", desc: "Generate professional resignation letters.", popular: true },
   { slug: "authorization-letter-generator", name: "Authorization Letter", icon: "🔑", category: "Legal", desc: "Create authorization letters for third-party actions." },
   { slug: "salary-certificate-generator", name: "Salary Certificate", icon: "📃", category: "HR", desc: "Generate salary certificates for loans, visas, and verification.", popular: true },
+  { slug: "affidavit-generator", name: "Affidavit", icon: "📝", category: "Legal", desc: "Generate affidavits for identity, address, name change, and more." },
+  { slug: "partnership-deed-generator", name: "Partnership Deed", icon: "🤝", category: "Business", desc: "Create partnership deeds with capital, profit sharing, and terms." },
 ];
 
 const CATEGORIES = ["All", "HR", "Rental", "Business", "Legal"];

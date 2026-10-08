@@ -17,6 +17,9 @@ const EXPECTED_ROUTES = [
   "/resignation-letter-generator",
   "/authorization-letter-generator",
   "/salary-certificate-generator",
+  "/affidavit-generator",
+  "/partnership-deed-generator",
+  "/blog",
 ];
 
 const SITEMAP_SLUGS = [
@@ -35,11 +38,13 @@ const SITEMAP_SLUGS = [
   "resignation-letter-generator",
   "authorization-letter-generator",
   "salary-certificate-generator",
+  "affidavit-generator",
+  "partnership-deed-generator",
 ];
 
 describe("Route coverage", () => {
-  it("has 16 routes (homepage + 15 generators)", () => {
-    expect(EXPECTED_ROUTES.length).toBe(16);
+  it("has 20 routes (homepage + 17 generators + blog + catchall)", () => {
+    expect(EXPECTED_ROUTES.length).toBe(19);
   });
 
   it("every sitemap slug has a matching route", () => {
@@ -50,7 +55,7 @@ describe("Route coverage", () => {
 
   it("every generator route has a matching sitemap slug", () => {
     for (const route of EXPECTED_ROUTES) {
-      if (route === "/") continue;
+      if (route === "/" || route === "/blog") continue;
       expect(SITEMAP_SLUGS).toContain(route.slice(1));
     }
   });

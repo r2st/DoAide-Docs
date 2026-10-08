@@ -6,6 +6,7 @@ import InstallPrompt from "./components/InstallPrompt";
 import ToolTracker from "./components/ToolTracker";
 import SocialProofBar from "./components/SocialProofBar";
 import ReferralBanner from "./components/ReferralBanner";
+import BlogLayout, { BlogIndex } from "./pages/blog/BlogLayout";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const RentReceiptGenerator = lazy(() => import("./pages/RentReceiptGenerator"));
@@ -23,7 +24,11 @@ const LeaveApplicationGenerator = lazy(() => import("./pages/LeaveApplicationGen
 const ResignationLetterGenerator = lazy(() => import("./pages/ResignationLetterGenerator"));
 const AuthorizationLetterGenerator = lazy(() => import("./pages/AuthorizationLetterGenerator"));
 const SalaryCertificateGenerator = lazy(() => import("./pages/SalaryCertificateGenerator"));
+const AffidavitGenerator = lazy(() => import("./pages/AffidavitGenerator"));
+const PartnershipDeedGenerator = lazy(() => import("./pages/PartnershipDeedGenerator"));
 const EmbedRentReceiptGenerator = lazy(() => import("./pages/EmbedRentReceiptGenerator"));
+const FreeLegalDocTemplatesIndia = lazy(() => import("./pages/blog/FreeLegalDocTemplatesIndia"));
+const HowToWriteRentAgreement = lazy(() => import("./pages/blog/HowToWriteRentAgreement"));
 
 function Loading() {
   return (
@@ -68,6 +73,13 @@ export default function App() {
           <Route path="/resignation-letter-generator" element={<ResignationLetterGenerator />} />
           <Route path="/authorization-letter-generator" element={<AuthorizationLetterGenerator />} />
           <Route path="/salary-certificate-generator" element={<SalaryCertificateGenerator />} />
+          <Route path="/affidavit-generator" element={<AffidavitGenerator />} />
+          <Route path="/partnership-deed-generator" element={<PartnershipDeedGenerator />} />
+          <Route path="/blog" element={<BlogLayout />}>
+            <Route index element={<BlogIndex />} />
+            <Route path="free-legal-document-templates-india" element={<FreeLegalDocTemplatesIndia />} />
+            <Route path="how-to-write-rent-agreement" element={<HowToWriteRentAgreement />} />
+          </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>

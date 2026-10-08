@@ -16,11 +16,13 @@ const DOCS = [
   { slug: "resignation-letter-generator", name: "Resignation Letter", category: "HR" },
   { slug: "authorization-letter-generator", name: "Authorization Letter", category: "Legal" },
   { slug: "salary-certificate-generator", name: "Salary Certificate", category: "HR" },
+  { slug: "affidavit-generator", name: "Affidavit", category: "Legal" },
+  { slug: "partnership-deed-generator", name: "Partnership Deed", category: "Business" },
 ];
 
 describe("HomePage DOCS data", () => {
-  it("has 15 document types", () => {
-    expect(DOCS.length).toBe(15);
+  it("has 17 document types", () => {
+    expect(DOCS.length).toBe(17);
   });
 
   it("all slugs are unique", () => {
