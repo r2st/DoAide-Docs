@@ -6,3 +6,7 @@ __pycache__/
 .env
 *.egg-info/
 web/vite.config.js.timestamp-*
+
+# Environment
+.env*
+!.env.example
