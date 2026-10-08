@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -19,6 +19,7 @@ const LeaveApplicationGenerator = lazy(() => import("./pages/LeaveApplicationGen
 const ResignationLetterGenerator = lazy(() => import("./pages/ResignationLetterGenerator"));
 const AuthorizationLetterGenerator = lazy(() => import("./pages/AuthorizationLetterGenerator"));
 const SalaryCertificateGenerator = lazy(() => import("./pages/SalaryCertificateGenerator"));
+const EmbedRentReceiptGenerator = lazy(() => import("./pages/EmbedRentReceiptGenerator"));
 
 function Loading() {
   return (
@@ -29,6 +30,17 @@ function Loading() {
 }
 
 export default function App() {
+  const { pathname } = useLocation();
+  if (pathname.startsWith("/embed/")) {
+    return (
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="/embed/rent-receipt-generator" element={<EmbedRentReceiptGenerator />} />
+        </Routes>
+      </Suspense>
+    );
+  }
+
   return (
     <>
       <Header />
