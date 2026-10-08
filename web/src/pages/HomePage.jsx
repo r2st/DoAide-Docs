@@ -69,7 +69,10 @@ export default function HomePage() {
               </div>
               <h3>{doc.name} Generator</h3>
               <p>{doc.desc}</p>
-              <span className="doc-card-tag">{doc.category}</span>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "0.5rem" }}>
+                <span className="doc-card-tag">{doc.category}</span>
+                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--gold, #d97706)" }}>Generate Now →</span>
+              </div>
             </Link>
           ))}
         </div>
