@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SeoHead from "../components/SeoHead";
+import ShareButtons from "../components/ShareButtons";
 import FAQ from "../components/FAQ";
 import RelatedDocs from "../components/RelatedDocs";
 import { createPdf, shareWhatsApp, printPreview } from "../lib/pdfGenerator";
@@ -215,6 +216,8 @@ export default function NocLetterGenerator() {
             </div>
           </div>
         </div>
+
+        <ShareButtons text="Free document generator online — no login needed! Try it:" toolName="this generator" />
 
         <FAQ items={FAQS} />
         <RelatedDocs currentSlug={SLUG} />

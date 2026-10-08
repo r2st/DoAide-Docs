@@ -394,6 +394,41 @@ a:hover { color: var(--gold-light); }
 .btn-whatsapp:hover {
   background: #1da851;
 }
+.btn-twitter {
+  background: #000;
+  color: #fff;
+}
+.btn-twitter:hover {
+  background: #333;
+}
+.btn-copy {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+.btn-copy:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.share-section {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.share-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.share-proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 16px;
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-muted, #888);
+}
 
 /* ---- FAQ section ---- */
 .faq-section {
