@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -50,6 +50,7 @@ export default function App() {
           <Route path="/resignation-letter-generator" element={<ResignationLetterGenerator />} />
           <Route path="/authorization-letter-generator" element={<AuthorizationLetterGenerator />} />
           <Route path="/salary-certificate-generator" element={<SalaryCertificateGenerator />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
       <Footer />

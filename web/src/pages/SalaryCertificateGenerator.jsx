@@ -207,9 +207,9 @@ export default function SalaryCertificateGenerator() {
             </div>
 
             <div className="btn-row">
-              <button className="btn-primary" onClick={handleDownload}>Download PDF</button>
-              <button className="btn-secondary" onClick={printPreview}>Print</button>
-              <button className="btn-whatsapp" onClick={handleWhatsApp}>WhatsApp</button>
+              <button className="btn btn-primary" onClick={handleDownload}>Download PDF</button>
+              <button className="btn btn-secondary" onClick={printPreview}>Print</button>
+              <button className="btn btn-whatsapp" onClick={handleWhatsApp}>WhatsApp</button>
             </div>
           </div>
         </div>
@@ -248,7 +248,7 @@ function renderPdf(ctx, form) {
   if (joining) body += ` since ${joining}`;
   body += ".";
 
-  ctx.addLine(body, { size: 10 });
+  ctx.addParagraph(body, { size: 10 });
   ctx.addGap(0.5);
 
   ctx.addLine("Current salary details:", { size: 10 });
@@ -257,9 +257,9 @@ function renderPdf(ctx, form) {
   if (form.annualCtc) ctx.addFieldRow("Annual CTC:", `Rs ${Number(form.annualCtc).toLocaleString("en-IN")}`);
   ctx.addGap(0.5);
 
-  ctx.addLine(`This certificate is being issued at the request of the employee for the purpose of ${form.purpose}.`, { size: 10 });
+  ctx.addParagraph(`This certificate is being issued at the request of the employee for the purpose of ${form.purpose}.`, { size: 10 });
   ctx.addGap(0.5);
-  ctx.addLine("We confirm that the above details are true and correct as per our records.", { size: 10 });
+  ctx.addParagraph("We confirm that the above details are true and correct as per our records.", { size: 10 });
 
   ctx.addGap(3);
 

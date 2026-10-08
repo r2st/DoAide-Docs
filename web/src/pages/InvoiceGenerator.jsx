@@ -332,7 +332,7 @@ function renderPdf(ctx, data) {
   ctx.addGap();
 
   // Items table header
-  const colWidths = [25, 160, 60, 40, 60, 70];
+  const colWidths = [10, 60, 25, 20, 25, 30];
   ctx.addTableRow(["#", "Description", "HSN", "Qty", "Rate", "Amount"], colWidths, { bold: true, header: true });
 
   // Items table rows

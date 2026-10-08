@@ -199,9 +199,9 @@ export default function RentalAgreementGenerator() {
             </div>
 
             <div className="btn-row">
-              <button className="btn-primary" onClick={handleDownload}>Download PDF</button>
-              <button className="btn-secondary" onClick={printPreview}>Print</button>
-              <button className="btn-whatsapp" onClick={handleWhatsApp}>WhatsApp</button>
+              <button className="btn btn-primary" onClick={handleDownload}>Download PDF</button>
+              <button className="btn btn-secondary" onClick={printPreview}>Print</button>
+              <button className="btn btn-whatsapp" onClick={handleWhatsApp}>WhatsApp</button>
             </div>
           </div>
         </div>
