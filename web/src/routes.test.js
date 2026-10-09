@@ -27,6 +27,7 @@ const SITEMAP_SLUGS = [
   "rent-receipt-generator",
   "rental-agreement-generator",
   "salary-slip-generator",
+  "salary-certificate-generator",
   "experience-letter-generator",
   "relieving-letter-generator",
   "offer-letter-generator",
@@ -38,7 +39,6 @@ const SITEMAP_SLUGS = [
   "leave-application-generator",
   "resignation-letter-generator",
   "authorization-letter-generator",
-  "salary-certificate-generator",
   "affidavit-generator",
   "partnership-deed-generator",
 ];

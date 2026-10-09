@@ -3,6 +3,7 @@ import SeoHead from "../components/SeoHead";
 import ShareButtons from "../components/ShareButtons";
 import FAQ from "../components/FAQ";
 import RelatedDocs from "../components/RelatedDocs";
+import ConversionCTA from "../components/ConversionCTA";
 import { createPdf, shareWhatsApp, printPreview } from "../lib/pdfGenerator";
 
 const SLUG = "experience-letter-generator";
@@ -34,6 +35,8 @@ export default function ExperienceLetterGenerator() {
     dateOfJoining: "",
     dateOfRelieving: "",
     issueDate: todayStr(),
+    hrName: "",
+    hrDesignation: "",
   });
 
   const set = (field) => (e) => setForm({ ...form, [field]: e.target.value });
@@ -106,7 +109,7 @@ export default function ExperienceLetterGenerator() {
                 <input type="date" value={form.dateOfJoining} onChange={set("dateOfJoining")} />
               </div>
               <div className="form-group">
-                <label>Date of Relieving *</label>
+                <label>Last Working Date *</label>
                 <input type="date" value={form.dateOfRelieving} onChange={set("dateOfRelieving")} />
               </div>
             </div>
@@ -114,6 +117,19 @@ export default function ExperienceLetterGenerator() {
             <div className="form-group">
               <label>Issue Date</label>
               <input type="date" value={form.issueDate} onChange={set("issueDate")} />
+            </div>
+
+            <h2 style={{ marginTop: "1rem" }}>Signatory Details</h2>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label>HR / Signatory Name</label>
+                <input value={form.hrName} onChange={set("hrName")} placeholder="e.g. Priya Sharma" />
+              </div>
+              <div className="form-group">
+                <label>HR / Signatory Designation</label>
+                <input value={form.hrDesignation} onChange={set("hrDesignation")} placeholder="e.g. HR Manager" />
+              </div>
             </div>
           </div>
 
@@ -157,8 +173,11 @@ export default function ExperienceLetterGenerator() {
                 <p style={{ marginBottom: "0.25rem" }}>For <strong>{form.companyName || "________"}</strong></p>
                 <div style={{ marginTop: "1.5rem" }}>
                   <p style={{ borderTop: "1px solid #999", paddingTop: "0.25rem", display: "inline-block" }}>
-                    Authorised Signatory
+                    {form.hrName || "Authorised Signatory"}
                   </p>
+                  {form.hrDesignation && (
+                    <p style={{ fontSize: "0.8rem", color: "#666" }}>{form.hrDesignation}</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -172,7 +191,7 @@ export default function ExperienceLetterGenerator() {
         </div>
 
         <ShareButtons text="Free document generator online — no login needed! Try it:" toolName="this generator" />
-
+        <ConversionCTA />
         <FAQ items={FAQS} />
         <RelatedDocs currentSlug={SLUG} />
       </div>
@@ -181,7 +200,6 @@ export default function ExperienceLetterGenerator() {
 }
 
 function renderPdf(ctx, form) {
-  // Letterhead
   ctx.addLine(form.companyName || "Company Name", { bold: true, size: 14, align: "center" });
   if (form.companyAddress) {
     ctx.addLine(form.companyAddress, { size: 9, align: "center", color: [100, 100, 100] });
@@ -217,5 +235,8 @@ function renderPdf(ctx, form) {
   ctx.addLine(`For ${form.companyName || "________"}`, { bold: true, size: 10 });
   ctx.addGap(3);
   ctx.addLine("________________________", { size: 10 });
-  ctx.addLine("Authorised Signatory", { size: 10 });
+  ctx.addLine(form.hrName || "Authorised Signatory", { bold: true, size: 10 });
+  if (form.hrDesignation) {
+    ctx.addLine(form.hrDesignation, { size: 9, color: [100, 100, 100] });
+  }
 }

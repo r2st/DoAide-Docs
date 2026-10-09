@@ -3,16 +3,17 @@ import SeoHead from "../components/SeoHead";
 import ShareButtons from "../components/ShareButtons";
 import FAQ from "../components/FAQ";
 import RelatedDocs from "../components/RelatedDocs";
+import ConversionCTA from "../components/ConversionCTA";
 import { createPdf, shareWhatsApp, printPreview } from "../lib/pdfGenerator";
 
 const SLUG = "bonafide-certificate-generator";
 
 const FAQS = [
-  { q: "What is a bonafide certificate?", a: "A bonafide certificate is an official document issued by an educational institution certifying that a particular student is currently enrolled and studying at that institution. It serves as proof of genuine enrollment and is often required for various official purposes." },
-  { q: "Who issues a bonafide certificate?", a: "A bonafide certificate is issued by the principal, registrar, or head of the educational institution where the student is currently enrolled. It is printed on the institution's official letterhead and carries an authorized signature and seal." },
-  { q: "What is a bonafide certificate used for?", a: "A bonafide certificate is used for opening a bank account, applying for a passport, availing educational loans, applying for scholarships, obtaining a bus or train pass, visa applications, and various other official or administrative purposes." },
+  { q: "What is a bonafide certificate?", a: "A bonafide certificate is an official document issued by an educational institution or employer certifying that a particular student or employee is currently enrolled or employed. It serves as proof of genuine association and is often required for various official purposes." },
+  { q: "Who issues a bonafide certificate?", a: "For students, a bonafide certificate is issued by the principal, registrar, or head of the educational institution. For employees, it is issued by the HR department or an authorised signatory of the company. It is printed on official letterhead and carries an authorized signature and seal." },
+  { q: "What is a bonafide certificate used for?", a: "A bonafide certificate is used for opening a bank account, applying for a passport, availing educational loans, applying for scholarships, obtaining a bus or train pass, visa applications, address proof, and various other official or administrative purposes." },
   { q: "How long is a bonafide certificate valid?", a: "A bonafide certificate is typically valid for 3 to 6 months from the date of issue. However, the validity may vary depending on the purpose and the organization requesting it. Some institutions may specify the validity period on the certificate itself." },
-  { q: "How to apply for a bonafide certificate?", a: "To apply for a bonafide certificate, submit a written application to the principal or registrar of your institution stating the purpose for which the certificate is required. Most institutions process the request within 2 to 5 working days. Some institutions also accept online applications through their student portal." },
+  { q: "Can employees get a bonafide certificate?", a: "Yes, employees can get a bonafide certificate from their employer. It certifies that the person is a current employee of the company and is often required for purposes like visa applications, bank loans, address verification, or government procedures." },
 ];
 
 const PURPOSES = [
@@ -22,20 +23,30 @@ const PURPOSES = [
   "Education Loan",
   "Bus/Train Pass",
   "Visa Application",
+  "Address Verification",
   "Other",
 ];
 
 export default function BonafideCertificateGenerator() {
+  const [mode, setMode] = useState("student");
   const [form, setForm] = useState({
-    studentName: "",
+    // Common
+    name: "",
     fatherName: "",
+    dateOfBirth: "",
+    purpose: "Bank Account Opening",
+    institution: "",
+    institutionAddress: "",
+    issueDate: new Date().toISOString().slice(0, 10),
+    // Student
     courseName: "",
     year: "First",
     rollNo: "",
-    institution: "",
-    institutionAddress: "",
-    purpose: "Bank Account Opening",
-    issueDate: new Date().toISOString().slice(0, 10),
+    // Employee
+    employeeNo: "",
+    designation: "",
+    department: "",
+    dateOfJoining: "",
   });
 
   const set = (field) => (e) => setForm({ ...form, [field]: e.target.value });
@@ -43,8 +54,8 @@ export default function BonafideCertificateGenerator() {
   const handleDownload = () => {
     createPdf({
       title: "Bonafide Certificate",
-      filename: `bonafide-certificate-${form.studentName || "student"}.pdf`,
-      renderFn: (ctx) => renderPdf(ctx, form),
+      filename: `bonafide-certificate-${form.name || (mode === "student" ? "student" : "employee")}.pdf`,
+      renderFn: (ctx) => renderPdf(ctx, mode, form),
     });
   };
 
@@ -54,11 +65,15 @@ export default function BonafideCertificateGenerator() {
     );
   };
 
+  const fmtDob = form.dateOfBirth
+    ? new Date(form.dateOfBirth).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })
+    : "________";
+
   return (
     <>
       <SeoHead
         title="Free Bonafide Certificate Generator Online | DoAide Docs"
-        description="Generate bonafide certificates online for free. Download as PDF instantly. No login required. Ideal for bank accounts, passport, scholarships, education loans, and more."
+        description="Generate bonafide certificates online for students and employees. Download as PDF instantly. No login required. Ideal for bank accounts, passport, scholarships, education loans, visa, and more."
         slug={SLUG}
         faqs={FAQS}
       />
@@ -66,47 +81,35 @@ export default function BonafideCertificateGenerator() {
       <div className="page-container">
         <div className="gen-header">
           <h1>Free <span>Bonafide Certificate</span> Generator</h1>
-          <p>Generate bonafide certificates instantly for bank accounts, passport applications, scholarships, and more. Fill the form, preview, and download as PDF. 100% free, no sign-up needed.</p>
+          <p>Generate bonafide certificates instantly for students and employees. Use for bank accounts, passport applications, scholarships, visa, and more. Fill the form, preview, and download as PDF.</p>
           <div className="free-badge">100% FREE -- No Login Required</div>
         </div>
 
         <div className="gen-layout">
           {/* ---- FORM ---- */}
           <div className="form-card">
-            <h2>Certificate Details</h2>
+            <h2>Certificate For</h2>
+            <div className="mode-toggle">
+              <button className={mode === "student" ? "active" : ""} onClick={() => setMode("student")}>Student</button>
+              <button className={mode === "employee" ? "active" : ""} onClick={() => setMode("employee")}>Employee</button>
+            </div>
 
+            <h2>Personal Details</h2>
             <div className="form-row">
               <div className="form-group">
-                <label>Student Name *</label>
-                <input value={form.studentName} onChange={set("studentName")} placeholder="Enter student's full name" />
+                <label>{mode === "student" ? "Student" : "Employee"} Name *</label>
+                <input value={form.name} onChange={set("name")} placeholder="Enter full name" />
               </div>
               <div className="form-group">
-                <label>Father's Name *</label>
+                <label>Father&apos;s Name *</label>
                 <input value={form.fatherName} onChange={set("fatherName")} placeholder="Enter father's full name" />
               </div>
             </div>
 
             <div className="form-row">
               <div className="form-group">
-                <label>Course / Program *</label>
-                <input value={form.courseName} onChange={set("courseName")} placeholder="e.g. B.Tech Computer Science" />
-              </div>
-              <div className="form-group">
-                <label>Year of Study *</label>
-                <select value={form.year} onChange={set("year")}>
-                  <option>First</option>
-                  <option>Second</option>
-                  <option>Third</option>
-                  <option>Fourth</option>
-                  <option>Fifth</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="form-row">
-              <div className="form-group">
-                <label>Roll Number *</label>
-                <input value={form.rollNo} onChange={set("rollNo")} placeholder="e.g. 2024CS001" />
+                <label>Date of Birth</label>
+                <input type="date" value={form.dateOfBirth} onChange={set("dateOfBirth")} />
               </div>
               <div className="form-group">
                 <label>Date of Issue *</label>
@@ -114,10 +117,63 @@ export default function BonafideCertificateGenerator() {
               </div>
             </div>
 
+            {mode === "student" && (
+              <>
+                <h2 style={{ marginTop: "1rem" }}>Academic Details</h2>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Course / Program *</label>
+                    <input value={form.courseName} onChange={set("courseName")} placeholder="e.g. B.Tech Computer Science" />
+                  </div>
+                  <div className="form-group">
+                    <label>Year of Study *</label>
+                    <select value={form.year} onChange={set("year")}>
+                      <option>First</option>
+                      <option>Second</option>
+                      <option>Third</option>
+                      <option>Fourth</option>
+                      <option>Fifth</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label>Enrollment / Roll Number *</label>
+                  <input value={form.rollNo} onChange={set("rollNo")} placeholder="e.g. 2024CS001" />
+                </div>
+              </>
+            )}
+
+            {mode === "employee" && (
+              <>
+                <h2 style={{ marginTop: "1rem" }}>Employment Details</h2>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Employee Number *</label>
+                    <input value={form.employeeNo} onChange={set("employeeNo")} placeholder="e.g. EMP-2024-001" />
+                  </div>
+                  <div className="form-group">
+                    <label>Designation *</label>
+                    <input value={form.designation} onChange={set("designation")} placeholder="e.g. Software Engineer" />
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Department</label>
+                    <input value={form.department} onChange={set("department")} placeholder="e.g. Engineering" />
+                  </div>
+                  <div className="form-group">
+                    <label>Date of Joining</label>
+                    <input type="date" value={form.dateOfJoining} onChange={set("dateOfJoining")} />
+                  </div>
+                </div>
+              </>
+            )}
+
+            <h2 style={{ marginTop: "1rem" }}>Institution / Company</h2>
             <div className="form-row">
               <div className="form-group">
-                <label>Institution Name *</label>
-                <input value={form.institution} onChange={set("institution")} placeholder="Enter institution name" />
+                <label>{mode === "student" ? "Institution" : "Company"} Name *</label>
+                <input value={form.institution} onChange={set("institution")} placeholder={mode === "student" ? "Enter institution name" : "Enter company name"} />
               </div>
               <div className="form-group">
                 <label>Purpose *</label>
@@ -128,8 +184,8 @@ export default function BonafideCertificateGenerator() {
             </div>
 
             <div className="form-group">
-              <label>Institution Address</label>
-              <input value={form.institutionAddress} onChange={set("institutionAddress")} placeholder="Enter institution address" />
+              <label>{mode === "student" ? "Institution" : "Company"} Address</label>
+              <input value={form.institutionAddress} onChange={set("institutionAddress")} placeholder="Enter address" />
             </div>
           </div>
 
@@ -138,7 +194,7 @@ export default function BonafideCertificateGenerator() {
             <h2>Live Preview</h2>
             <div className="preview-doc">
               <p className="company-name" style={{ textAlign: "center", fontWeight: "bold", fontSize: "1.1rem", marginBottom: "0.15rem" }}>
-                {form.institution || "Institution Name"}
+                {form.institution || (mode === "student" ? "Institution Name" : "Company Name")}
               </p>
               {form.institutionAddress && (
                 <p style={{ textAlign: "center", fontSize: "0.8rem", color: "#666", marginBottom: "0.75rem" }}>
@@ -151,20 +207,39 @@ export default function BonafideCertificateGenerator() {
               <hr />
 
               <div className="field-row" style={{ marginTop: "0.75rem", display: "flex", justifyContent: "space-between" }}>
-                <span><span className="field-label">Ref No:</span> {form.rollNo || "____"}</span>
+                <span><span className="field-label">Ref No:</span> {(mode === "student" ? form.rollNo : form.employeeNo) || "____"}</span>
                 <span><span className="field-label">Date:</span> {form.issueDate || "____"}</span>
               </div>
 
-              <p style={{ marginTop: "1rem", lineHeight: "1.7" }}>
-                This is to certify that <strong>{form.studentName || "________"}</strong>,
-                son/daughter of <strong>{form.fatherName || "________"}</strong>,
-                is a bonafide student of this institution. He/She is currently enrolled in
-                the <strong>{form.courseName || "________"}</strong> program
-                and is studying in the <strong>{form.year || "____"}</strong> year,
-                bearing Roll Number <strong>{form.rollNo || "________"}</strong>.
-              </p>
+              {mode === "student" ? (
+                <>
+                  <p style={{ marginTop: "1rem", lineHeight: "1.7" }}>
+                    This is to certify that <strong>{form.name || "________"}</strong>,
+                    son/daughter of <strong>{form.fatherName || "________"}</strong>
+                    {form.dateOfBirth && <>, born on <strong>{fmtDob}</strong></>},
+                    is a bonafide student of this institution. He/She is currently enrolled in
+                    the <strong>{form.courseName || "________"}</strong> program
+                    and is studying in the <strong>{form.year || "____"}</strong> year,
+                    bearing Enrollment Number <strong>{form.rollNo || "________"}</strong>.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p style={{ marginTop: "1rem", lineHeight: "1.7" }}>
+                    This is to certify that <strong>{form.name || "________"}</strong>,
+                    son/daughter of <strong>{form.fatherName || "________"}</strong>
+                    {form.dateOfBirth && <>, born on <strong>{fmtDob}</strong></>},
+                    is a bonafide employee of <strong>{form.institution || "________"}</strong>.
+                    He/She is currently working as <strong>{form.designation || "________"}</strong>
+                    {form.department && <> in the <strong>{form.department}</strong> department</>},
+                    bearing Employee Number <strong>{form.employeeNo || "________"}</strong>
+                    {form.dateOfJoining && <>, since <strong>{new Date(form.dateOfJoining).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}</strong></>}.
+                  </p>
+                </>
+              )}
+
               <p style={{ marginTop: "0.75rem", lineHeight: "1.7" }}>
-                This certificate is being issued upon the request of the student for the purpose
+                This certificate is being issued upon request for the purpose
                 of <strong>{form.purpose || "________"}</strong>.
               </p>
               <p style={{ marginTop: "0.75rem", lineHeight: "1.7" }}>
@@ -177,7 +252,7 @@ export default function BonafideCertificateGenerator() {
                 </div>
                 <div className="signature-line" style={{ textAlign: "center" }}>
                   <p style={{ borderTop: "1px solid #999", paddingTop: "0.25rem", minWidth: "10rem" }}>
-                    Principal / Registrar
+                    {mode === "student" ? "Principal / Registrar" : "HR Manager / Authorised Signatory"}
                   </p>
                 </div>
               </div>
@@ -192,7 +267,7 @@ export default function BonafideCertificateGenerator() {
         </div>
 
         <ShareButtons text="Free document generator online — no login needed! Try it:" toolName="this generator" />
-
+        <ConversionCTA />
         <FAQ items={FAQS} />
         <RelatedDocs currentSlug={SLUG} />
       </div>
@@ -200,8 +275,12 @@ export default function BonafideCertificateGenerator() {
   );
 }
 
-function renderPdf(ctx, form) {
-  ctx.addLine(form.institution || "Institution Name", { bold: true, size: 14, align: "center" });
+function renderPdf(ctx, mode, form) {
+  const fmtDob = form.dateOfBirth
+    ? new Date(form.dateOfBirth).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })
+    : null;
+
+  ctx.addLine(form.institution || (mode === "student" ? "Institution Name" : "Company Name"), { bold: true, size: 14, align: "center" });
   if (form.institutionAddress) {
     ctx.addLine(form.institutionAddress, { size: 9, align: "center", color: [100, 100, 100] });
   }
@@ -212,18 +291,32 @@ function renderPdf(ctx, form) {
 
   const halfW = ctx.contentWidth / 2;
   ctx.addTableRow(
-    [`Ref No: ${form.rollNo || "____"}`, `Date: ${form.issueDate || "____"}`],
+    [`Ref No: ${(mode === "student" ? form.rollNo : form.employeeNo) || "____"}`, `Date: ${form.issueDate || "____"}`],
     [halfW, halfW]
   );
   ctx.addGap();
 
-  ctx.addParagraph(
-    `This is to certify that ${form.studentName || "________"}, son/daughter of ${form.fatherName || "________"}, is a bonafide student of this institution. He/She is currently enrolled in the ${form.courseName || "________"} program and is studying in the ${form.year || "____"} year, bearing Roll Number ${form.rollNo || "________"}.`
-  );
+  if (mode === "student") {
+    let body = `This is to certify that ${form.name || "________"}, son/daughter of ${form.fatherName || "________"}`;
+    if (fmtDob) body += `, born on ${fmtDob}`;
+    body += `, is a bonafide student of this institution. He/She is currently enrolled in the ${form.courseName || "________"} program and is studying in the ${form.year || "____"} year, bearing Enrollment Number ${form.rollNo || "________"}.`;
+    ctx.addParagraph(body);
+  } else {
+    let body = `This is to certify that ${form.name || "________"}, son/daughter of ${form.fatherName || "________"}`;
+    if (fmtDob) body += `, born on ${fmtDob}`;
+    body += `, is a bonafide employee of ${form.institution || "________"}. He/She is currently working as ${form.designation || "________"}`;
+    if (form.department) body += ` in the ${form.department} department`;
+    body += `, bearing Employee Number ${form.employeeNo || "________"}`;
+    if (form.dateOfJoining) {
+      body += `, since ${new Date(form.dateOfJoining).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}`;
+    }
+    body += ".";
+    ctx.addParagraph(body);
+  }
   ctx.addGap();
 
   ctx.addParagraph(
-    `This certificate is being issued upon the request of the student for the purpose of ${form.purpose || "________"}.`
+    `This certificate is being issued upon request for the purpose of ${form.purpose || "________"}.`
   );
   ctx.addGap();
 
@@ -235,7 +328,7 @@ function renderPdf(ctx, form) {
     [halfW, halfW]
   );
   ctx.addTableRow(
-    ["", "Principal / Registrar"],
+    ["", mode === "student" ? "Principal / Registrar" : "HR Manager / Authorised Signatory"],
     [halfW, halfW]
   );
 }
