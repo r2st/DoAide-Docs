@@ -6,6 +6,7 @@ import InstallPrompt from "./components/InstallPrompt";
 import ToolTracker from "./components/ToolTracker";
 import SocialProofBar from "./components/SocialProofBar";
 import ReferralBanner from "./components/ReferralBanner";
+import FeedbackWidget from "./components/FeedbackWidget";
 import BlogLayout, { BlogIndex } from "./pages/blog/BlogLayout";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -88,6 +89,7 @@ export default function App() {
       <Footer />
       <InstallPrompt />
       <ReferralBanner />
+      <FeedbackWidget />
     </>
   );
 }
