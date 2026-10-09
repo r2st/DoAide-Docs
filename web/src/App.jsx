@@ -27,9 +27,13 @@ const AuthorizationLetterGenerator = lazy(() => import("./pages/AuthorizationLet
 const SalaryCertificateGenerator = lazy(() => import("./pages/SalaryCertificateGenerator"));
 const AffidavitGenerator = lazy(() => import("./pages/AffidavitGenerator"));
 const PartnershipDeedGenerator = lazy(() => import("./pages/PartnershipDeedGenerator"));
+const EmployeeWarningLetterGenerator = lazy(() => import("./pages/EmployeeWarningLetterGenerator"));
+const InternshipCertificateGenerator = lazy(() => import("./pages/InternshipCertificateGenerator"));
 const EmbedRentReceiptGenerator = lazy(() => import("./pages/EmbedRentReceiptGenerator"));
 const FreeLegalDocTemplatesIndia = lazy(() => import("./pages/blog/FreeLegalDocTemplatesIndia"));
 const HowToWriteRentAgreement = lazy(() => import("./pages/blog/HowToWriteRentAgreement"));
+const EmployeeWarningLetterGuide = lazy(() => import("./pages/blog/EmployeeWarningLetterGuide"));
+const InternshipCertificateGuide = lazy(() => import("./pages/blog/InternshipCertificateGuide"));
 const VsCanvaTemplates = lazy(() => import("./pages/compare/VsCanvaTemplates"));
 
 function Loading() {
@@ -77,10 +81,14 @@ export default function App() {
           <Route path="/salary-certificate-generator" element={<SalaryCertificateGenerator />} />
           <Route path="/affidavit-generator" element={<AffidavitGenerator />} />
           <Route path="/partnership-deed-generator" element={<PartnershipDeedGenerator />} />
+          <Route path="/employee-warning-letter-generator" element={<EmployeeWarningLetterGenerator />} />
+          <Route path="/internship-certificate-generator" element={<InternshipCertificateGenerator />} />
           <Route path="/blog" element={<BlogLayout />}>
             <Route index element={<BlogIndex />} />
             <Route path="free-legal-document-templates-india" element={<FreeLegalDocTemplatesIndia />} />
             <Route path="how-to-write-rent-agreement" element={<HowToWriteRentAgreement />} />
+            <Route path="how-to-write-employee-warning-letter" element={<EmployeeWarningLetterGuide />} />
+            <Route path="how-to-write-internship-certificate" element={<InternshipCertificateGuide />} />
           </Route>
           <Route path="/compare/canva-templates" element={<VsCanvaTemplates />} />
           <Route path="*" element={<Navigate to="/" replace />} />

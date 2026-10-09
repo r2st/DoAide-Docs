@@ -38,6 +38,8 @@ const TEMPLATES = [
   { name: "Affidavit", category: "Legal", useCase: "Sworn statement for legal/official purposes", slug: "affidavit-generator" },
   { name: "Authorization Letter", category: "Legal", useCase: "Authorize third-party actions", slug: "authorization-letter-generator" },
   { name: "Bonafide Certificate", category: "Legal", useCase: "Verify student/employee authenticity", slug: "bonafide-certificate-generator" },
+  { name: "Warning Letter", category: "HR", useCase: "Formal employee warning for misconduct/performance", slug: "employee-warning-letter-generator" },
+  { name: "Internship Certificate", category: "HR", useCase: "Internship completion certificate with rating", slug: "internship-certificate-generator" },
 ];
 
 const FAQS = [
@@ -65,7 +67,7 @@ export default function FreeLegalDocTemplatesIndia() {
       <p style={s.p}>
         Whether you are a small business owner drafting an invoice, an employee needing a resignation letter, a landlord
         preparing a rent agreement, or someone who needs an affidavit notarized — you should not have to pay a lawyer
-        for a standard template. DoAide Docs offers 17 free document generators that create properly formatted, downloadable
+        for a standard template. DoAide Docs offers 19 free document generators that create properly formatted, downloadable
         PDFs in seconds — with no login, no signup, and no data leaving your browser.
       </p>
 
@@ -121,6 +123,8 @@ export default function FreeLegalDocTemplatesIndia() {
         <li><Link to="/resignation-letter-generator" style={s.link}>Resignation Letter</Link> — Professional resignation with notice period and handover</li>
         <li><Link to="/leave-application-generator" style={s.link}>Leave Application</Link> — Casual, sick, earned, or maternity leave requests</li>
         <li><Link to="/salary-certificate-generator" style={s.link}>Salary Certificate</Link> — Income verification for bank loans, visas, and verification</li>
+        <li><Link to="/employee-warning-letter-generator" style={s.link}>Employee Warning Letter</Link> — Formal warnings for misconduct, poor performance, or attendance issues</li>
+        <li><Link to="/internship-certificate-generator" style={s.link}>Internship Certificate</Link> — Completion certificates with project details and performance rating</li>
       </ul>
 
       <h2 style={s.h2}>Legal Documents</h2>

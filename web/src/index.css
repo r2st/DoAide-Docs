@@ -244,6 +244,10 @@ a:hover { color: var(--gold-light); }
   .gen-header h1 { font-size: 1.5rem; }
   .footer-links { gap: 0.75rem; }
   .related-grid { grid-template-columns: 1fr; }
+  .share-row { flex-direction: column; }
+  .share-row .btn { width: 100%; }
+  .preview-doc { font-size: 0.78rem; }
+  .preview-doc .signature-line { flex-direction: column; gap: 1.5rem; }
 }
 
 /* ---- Forms ---- */

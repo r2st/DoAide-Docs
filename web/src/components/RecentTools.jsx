@@ -2,6 +2,17 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getRecentTools } from "../lib/doaideViral";
 
+function timeAgo(ts) {
+  const diff = Date.now() - ts;
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  const days = Math.floor(hrs / 24);
+  return `${days}d ago`;
+}
+
 const section = {
   margin: "1.5rem 0",
   padding: "1rem 1.25rem",
@@ -10,13 +21,19 @@ const section = {
   borderRadius: "12px",
 };
 
+const headerRow = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  marginBottom: "0.75rem",
+};
+
 const title = {
   fontSize: "0.8rem",
   fontWeight: 600,
   color: "var(--gold, #d97706)",
   textTransform: "uppercase",
   letterSpacing: "0.5px",
-  marginBottom: "0.75rem",
 };
 
 const row = {
@@ -42,6 +59,12 @@ const chip = {
   transition: "border-color 0.15s",
 };
 
+const tsStyle = {
+  fontSize: "0.68rem",
+  color: "var(--text-muted, #9ca3af)",
+  marginLeft: "0.25rem",
+};
+
 const cta = {
   fontSize: "0.72rem",
   fontWeight: 700,
@@ -59,11 +82,17 @@ export default function RecentTools() {
 
   return (
     <div style={section}>
-      <div style={title}>Pick up where you left off</div>
+      <div style={headerRow}>
+        <div style={title}>Recently Generated</div>
+        <div style={{ fontSize: "0.7rem", color: "var(--text-muted, #9ca3af)" }}>
+          {recent.length} recent
+        </div>
+      </div>
       <div style={row}>
         {recent.map((tool) => (
           <Link key={tool.path} to={tool.path} style={chip}>
             <span>{tool.name}</span>
+            {tool.ts && <span style={tsStyle}>{timeAgo(tool.ts)}</span>}
             <span style={cta}>Continue &rarr;</span>
           </Link>
         ))}

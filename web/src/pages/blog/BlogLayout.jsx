@@ -12,6 +12,16 @@ const ARTICLES = [
     title: "How to Write a Rent Agreement — Complete Guide with Format",
     description: "Step-by-step guide to writing a rent agreement in India. 11-month rental agreement format, essential clauses, stamp duty, registration, and free template download.",
   },
+  {
+    slug: "how-to-write-employee-warning-letter",
+    title: "How to Write an Employee Warning Letter — Complete Guide with Format",
+    description: "Step-by-step guide to writing an employee warning letter in India. Includes format, legal considerations, progressive discipline, and a free generator.",
+  },
+  {
+    slug: "how-to-write-internship-certificate",
+    title: "How to Write an Internship Certificate — Complete Guide with Format",
+    description: "Complete guide to creating internship certificates in India. Essential elements, sample format, university requirements, and a free generator.",
+  },
 ];
 
 export { ARTICLES };

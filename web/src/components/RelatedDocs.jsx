@@ -18,6 +18,8 @@ const ALL_DOCS = [
   { slug: "salary-certificate-generator", name: "Salary Certificate Generator" },
   { slug: "affidavit-generator", name: "Affidavit Generator" },
   { slug: "partnership-deed-generator", name: "Partnership Deed Generator" },
+  { slug: "employee-warning-letter-generator", name: "Employee Warning Letter Generator" },
+  { slug: "internship-certificate-generator", name: "Internship Certificate Generator" },
 ];
 
 export default function RelatedDocs({ currentSlug }) {

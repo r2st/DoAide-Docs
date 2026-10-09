@@ -151,6 +151,97 @@ describe("BonafideCertificateGenerator", () => {
   });
 });
 
+describe("EmployeeWarningLetterGenerator", () => {
+  const src = fs.readFileSync(path.join(pagesDir, "EmployeeWarningLetterGenerator.jsx"), "utf8");
+
+  it("supports four warning types", () => {
+    expect(src).toContain('"performance"');
+    expect(src).toContain('"attendance"');
+    expect(src).toContain('"misconduct"');
+    expect(src).toContain('"policy_violation"');
+  });
+
+  it("supports three warning levels", () => {
+    expect(src).toContain('"first"');
+    expect(src).toContain('"second"');
+    expect(src).toContain('"final"');
+  });
+
+  it("has SeoHead with slug and FAQs", () => {
+    expect(src).toContain("<SeoHead");
+    expect(src).toContain("slug={SLUG}");
+    expect(src).toContain("faqs={FAQS}");
+  });
+
+  it("includes ConversionCTA", () => {
+    expect(src).toContain("<ConversionCTA");
+  });
+
+  it("includes ShareButtons with WhatsApp", () => {
+    expect(src).toContain("<ShareButtons");
+    expect(src).toContain("btn-whatsapp");
+  });
+
+  it("has at least 5 FAQ items", () => {
+    const faqMatches = src.match(/\{ q: "/g);
+    expect(faqMatches.length).toBeGreaterThanOrEqual(5);
+  });
+
+  it("includes employee acknowledgement section", () => {
+    expect(src).toContain("Employee Acknowledgement");
+  });
+
+  it("uses addParagraph for body text in renderPdf", () => {
+    const renderSection = src.slice(src.indexOf("function renderPdf"));
+    expect(renderSection).toContain("ctx.addParagraph(");
+  });
+});
+
+describe("InternshipCertificateGenerator", () => {
+  const src = fs.readFileSync(path.join(pagesDir, "InternshipCertificateGenerator.jsx"), "utf8");
+
+  it("includes intern name and college name fields", () => {
+    expect(src).toContain("internName");
+    expect(src).toContain("collegeName");
+  });
+
+  it("supports performance ratings", () => {
+    expect(src).toContain('"Outstanding"');
+    expect(src).toContain('"Excellent"');
+    expect(src).toContain('"Good"');
+    expect(src).toContain('"Satisfactory"');
+  });
+
+  it("has SeoHead with slug and FAQs", () => {
+    expect(src).toContain("<SeoHead");
+    expect(src).toContain("slug={SLUG}");
+    expect(src).toContain("faqs={FAQS}");
+  });
+
+  it("includes ConversionCTA", () => {
+    expect(src).toContain("<ConversionCTA");
+  });
+
+  it("includes ShareButtons with WhatsApp", () => {
+    expect(src).toContain("<ShareButtons");
+    expect(src).toContain("btn-whatsapp");
+  });
+
+  it("has at least 5 FAQ items", () => {
+    const faqMatches = src.match(/\{ q: "/g);
+    expect(faqMatches.length).toBeGreaterThanOrEqual(5);
+  });
+
+  it("includes TO WHOM IT MAY CONCERN heading", () => {
+    expect(src).toContain("TO WHOM IT MAY CONCERN");
+  });
+
+  it("uses addParagraph for body text in renderPdf", () => {
+    const renderSection = src.slice(src.indexOf("function renderPdf"));
+    expect(renderSection).toContain("ctx.addParagraph(");
+  });
+});
+
 describe("ConversionCTA component exists", () => {
   const componentPath = path.resolve(import.meta.dirname, "../components/ConversionCTA.jsx");
 

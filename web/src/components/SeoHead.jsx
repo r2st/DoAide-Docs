@@ -1,16 +1,35 @@
 import { useEffect } from "react";
 
+function setMeta(attr, key, content) {
+  let el = document.querySelector(`meta[${attr}="${key}"]`);
+  if (!el) {
+    el = document.createElement("meta");
+    el.setAttribute(attr, key);
+    document.head.appendChild(el);
+  }
+  el.content = content;
+  return el;
+}
+
 export default function SeoHead({ title, description, slug, faqs = [] }) {
   useEffect(() => {
     document.title = title;
 
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement("meta");
-      metaDesc.name = "description";
-      document.head.appendChild(metaDesc);
+    const pageUrl = `https://docs.doaide.com/${slug || ""}`;
+    const created = [];
+
+    setMeta("name", "description", description);
+    created.push(setMeta("property", "og:title", title));
+    created.push(setMeta("property", "og:description", description));
+    created.push(setMeta("property", "og:url", pageUrl));
+
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
     }
-    metaDesc.content = description;
+    canonical.href = pageUrl;
 
     // JSON-LD
     let scriptTag = document.getElementById("json-ld-seo");
@@ -27,7 +46,7 @@ export default function SeoHead({ title, description, slug, faqs = [] }) {
         "@type": "WebApplication",
         "name": title,
         "description": description,
-        "url": `https://docs.doaide.com/${slug || ""}`,
+        "url": pageUrl,
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Any",
         "offers": {
@@ -54,6 +73,7 @@ export default function SeoHead({ title, description, slug, faqs = [] }) {
 
     return () => {
       if (scriptTag.parentNode) scriptTag.parentNode.removeChild(scriptTag);
+      created.forEach(el => { if (el.parentNode) el.parentNode.removeChild(el); });
     };
   }, [title, description, slug, faqs]);
 

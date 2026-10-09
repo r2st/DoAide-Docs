@@ -51,6 +51,10 @@ export const TOOL_MAP = {
   '/resignation-letter-generator': 'Resignation Letter',
   '/authorization-letter-generator': 'Authorization Letter',
   '/salary-certificate-generator': 'Salary Certificate',
+  '/affidavit-generator': 'Affidavit',
+  '/partnership-deed-generator': 'Partnership Deed',
+  '/employee-warning-letter-generator': 'Warning Letter',
+  '/internship-certificate-generator': 'Internship Certificate',
 };
 
 export function trackReferral() {

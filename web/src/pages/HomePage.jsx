@@ -67,6 +67,8 @@ const DOCS = [
   { slug: "salary-certificate-generator", name: "Salary Certificate", icon: "📃", category: "HR", desc: "Generate salary certificates for loans, visas, and verification.", popular: true },
   { slug: "affidavit-generator", name: "Affidavit", icon: "📝", category: "Legal", desc: "Generate affidavits for identity, address, name change, and more." },
   { slug: "partnership-deed-generator", name: "Partnership Deed", icon: "🤝", category: "Business", desc: "Create partnership deeds with capital, profit sharing, and terms." },
+  { slug: "employee-warning-letter-generator", name: "Warning Letter", icon: "⚠️", category: "HR", desc: "Generate employee warning letters for misconduct, performance, or attendance." },
+  { slug: "internship-certificate-generator", name: "Internship Certificate", icon: "🎓", category: "HR", desc: "Create internship completion certificates with project details and rating." },
 ];
 
 const CATEGORIES = ["All", "HR", "Rental", "Business", "Legal"];
@@ -106,7 +108,7 @@ export default function HomePage() {
           </h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
             {[
-              { step: "1", title: "Choose Your Document", desc: "Pick from 17 document types — rent receipts, salary slips, invoices, and more." },
+              { step: "1", title: "Choose Your Document", desc: "Pick from 19 document types — rent receipts, salary slips, invoices, and more." },
               { step: "2", title: "Fill In the Details", desc: "Enter your information in a simple form. See a live preview as you type." },
               { step: "3", title: "Download PDF Instantly", desc: "Click download and get a professional PDF. No signup, no watermarks." },
             ].map((s) => (
