@@ -11,7 +11,7 @@ function setMeta(attr, key, content) {
   return el;
 }
 
-export default function SeoHead({ title, description, slug, faqs = [] }) {
+export default function SeoHead({ title, description, slug, faqs = [], blog = null }) {
   useEffect(() => {
     document.title = title;
 
@@ -56,6 +56,22 @@ export default function SeoHead({ title, description, slug, faqs = [] }) {
         }
       }
     ];
+
+    if (blog) {
+      schemas.push({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": blog.headline || title,
+        "description": description,
+        "url": pageUrl,
+        "datePublished": blog.datePublished,
+        "dateModified": blog.dateModified || blog.datePublished,
+        "author": { "@type": "Organization", "name": "DoAide Docs", "url": "https://docs.doaide.com" },
+        "publisher": { "@type": "Organization", "name": "DoAide Docs", "url": "https://docs.doaide.com" },
+        "mainEntityOfPage": { "@type": "WebPage", "@id": pageUrl },
+        ...(blog.wordCount ? { "wordCount": blog.wordCount } : {}),
+      });
+    }
 
     if (faqs.length > 0) {
       schemas.push({

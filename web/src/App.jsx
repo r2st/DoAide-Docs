@@ -34,6 +34,9 @@ const FreeLegalDocTemplatesIndia = lazy(() => import("./pages/blog/FreeLegalDocT
 const HowToWriteRentAgreement = lazy(() => import("./pages/blog/HowToWriteRentAgreement"));
 const EmployeeWarningLetterGuide = lazy(() => import("./pages/blog/EmployeeWarningLetterGuide"));
 const InternshipCertificateGuide = lazy(() => import("./pages/blog/InternshipCertificateGuide"));
+const RentReceiptTaxSavingsGuide = lazy(() => import("./pages/blog/RentReceiptTaxSavingsGuide"));
+const SalarySlipFormat2026 = lazy(() => import("./pages/blog/SalarySlipFormat2026"));
+const ExperienceLetterFormatGuide = lazy(() => import("./pages/blog/ExperienceLetterFormatGuide"));
 const VsCanvaTemplates = lazy(() => import("./pages/compare/VsCanvaTemplates"));
 
 function Loading() {
@@ -89,6 +92,9 @@ export default function App() {
             <Route path="how-to-write-rent-agreement" element={<HowToWriteRentAgreement />} />
             <Route path="how-to-write-employee-warning-letter" element={<EmployeeWarningLetterGuide />} />
             <Route path="how-to-write-internship-certificate" element={<InternshipCertificateGuide />} />
+            <Route path="rent-receipt-generator-tax-savings" element={<RentReceiptTaxSavingsGuide />} />
+            <Route path="salary-slip-format-2026" element={<SalarySlipFormat2026 />} />
+            <Route path="experience-letter-format-guide" element={<ExperienceLetterFormatGuide />} />
           </Route>
           <Route path="/compare/canva-templates" element={<VsCanvaTemplates />} />
           <Route path="*" element={<Navigate to="/" replace />} />

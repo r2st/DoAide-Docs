@@ -22,6 +22,21 @@ const ARTICLES = [
     title: "How to Write an Internship Certificate — Complete Guide with Format",
     description: "Complete guide to creating internship certificates in India. Essential elements, sample format, university requirements, and a free generator.",
   },
+  {
+    slug: "rent-receipt-generator-tax-savings",
+    title: "Rent Receipt Generator: Free Tool for Tax Savings Under Section 10(13A)",
+    description: "Generate free rent receipts for HRA tax exemption. Complete guide to rent receipt format, HRA calculation, and tax savings for salaried employees in India.",
+  },
+  {
+    slug: "salary-slip-format-2026",
+    title: "Salary Slip Format 2026: Free Template for Indian Companies",
+    description: "Download free salary slip format for 2026 with all components — basic, HRA, DA, PF, ESI, TDS. Complete guide for Indian companies.",
+  },
+  {
+    slug: "experience-letter-format-guide",
+    title: "Experience Letter Format: Professional Template with Examples",
+    description: "Free experience letter format with professional examples. Complete guide to writing experience letters for Indian companies.",
+  },
 ];
 
 export { ARTICLES };
