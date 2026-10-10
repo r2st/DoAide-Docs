@@ -18,6 +18,19 @@ DOCUMENTS = [
     {"slug": "leave-application-generator", "priority": "0.8", "changefreq": "monthly"},
     {"slug": "resignation-letter-generator", "priority": "0.8", "changefreq": "monthly"},
     {"slug": "authorization-letter-generator", "priority": "0.7", "changefreq": "monthly"},
+    {"slug": "affidavit-generator", "priority": "0.7", "changefreq": "monthly"},
+    {"slug": "partnership-deed-generator", "priority": "0.7", "changefreq": "monthly"},
+    {"slug": "salary-certificate-generator", "priority": "0.8", "changefreq": "monthly"},
+]
+
+BLOG_POSTS = [
+    "free-legal-document-templates-india",
+    "how-to-write-rent-agreement",
+    "how-to-write-employee-warning-letter",
+    "how-to-write-internship-certificate",
+    "rent-receipt-generator-tax-savings",
+    "salary-slip-format-2026",
+    "experience-letter-format-guide",
 ]
 
 @router.get("/sitemap.xml")
@@ -33,6 +46,17 @@ def sitemap():
     <loc>{base}/{doc["slug"]}</loc>
     <changefreq>{doc["changefreq"]}</changefreq>
     <priority>{doc["priority"]}</priority>
+  </url>""")
+    urls.append(f"""  <url>
+    <loc>{base}/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>""")
+    for slug in BLOG_POSTS:
+        urls.append(f"""  <url>
+    <loc>{base}/blog/{slug}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>""")
     xml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
